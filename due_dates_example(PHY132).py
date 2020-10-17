@@ -3,6 +3,7 @@ import sys
 import time
 import pandas as pd
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 """Append Local file locations to to PYTHONPATH"""
 sys.path.insert(0, '/Users/andrewadams/Desktop/FunBBAs/LMSA-core/src')
@@ -21,8 +22,13 @@ prefix1 = '2018Spring-T-PHY122-'
 prefix2 = 'PHY 114: General Physics Laboratory (2018 Spring)-'
 data = pd.read_csv(filename, dtype=str, delimiter=',', header=None)
 
+"""Adding options to chrome"""
+opt = Options()
+opt.add_argument("--disable-infobars")
+opt.add_argument("start-maximized")
+
 """Initialize WebDriver object"""
-driver = webdriver.Chrome('/Users/andrewadams/Desktop/FunBBAs/LMSA-core/scripts/chromedriver_233')
+driver = webdriver.Chrome(options=opt, executable_path='/Users/andrewadams/Desktop/FunBBAs/LMSA-core/scripts/chromedriver_233')
 
 """Change to FALSE when ready to save changes"""
 DRYRUN = False
